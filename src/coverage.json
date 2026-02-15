@@ -1,0 +1,318 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T07:20:53.766Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 10,
+    "implemented": 9,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create the Pleiades TV app shell with a coherent, distinctive visual theme (colors, typography, spacing, and component styling) applied consistently across all pages. Use English for all user-facing text.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/App.tsx",
+          "frontend/src/components/layout/AppLayout.tsx",
+          "frontend/src/components/layout/AppHeader.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/App.tsx",
+          "frontend/src/components/layout/AppLayout.tsx",
+          "frontend/src/components/layout/AppHeader.tsx"
+        ]
+      },
+      {
+        "id": "REQ-10",
+        "summary": "Add generated static image assets for branding and placeholders, and render them in the UI (store under frontend/public/assets/generated).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/pleiades-tv-logo.dim_512x512.png",
+          "frontend/public/assets/generated/pleiades-hero.dim_1600x400.png",
+          "frontend/public/assets/generated/video-thumb-placeholder.dim_640x360.png",
+          "frontend/public/assets/generated/avatar-placeholder.dim_256x256.png",
+          "frontend/src/components/layout/AppHeader.tsx",
+          "frontend/src/pages/BrowsePage.tsx",
+          "frontend/src/components/video/VideoCard.tsx",
+          "frontend/src/components/comments/CommentsSection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/pleiades-tv-logo.dim_512x512.png",
+          "frontend/public/assets/generated/pleiades-hero.dim_1600x400.png",
+          "frontend/public/assets/generated/video-thumb-placeholder.dim_640x360.png",
+          "frontend/public/assets/generated/avatar-placeholder.dim_256x256.png",
+          "frontend/src/components/layout/AppHeader.tsx",
+          "frontend/src/pages/BrowsePage.tsx",
+          "frontend/src/components/video/VideoCard.tsx",
+          "frontend/src/components/comments/CommentsSection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Implement Internet Identity authentication so users can sign in/out and the app can associate subscriptions, comments, and likes with a unique user identity.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/auth/LoginButton.tsx",
+          "frontend/src/components/auth/AuthStatusBadge.tsx",
+          "frontend/src/hooks/useAuth.ts",
+          "frontend/src/components/layout/AppHeader.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/auth/LoginButton.tsx",
+          "frontend/src/hooks/useAuth.ts",
+          "frontend/src/components/layout/AppHeader.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Add backend data models and APIs to support a video catalog and video detail retrieval (at minimum: video id, title, description, thumbnail image URL, video playback URL, duration/created timestamp). Seed the app with a small default catalog so the UI works end-to-end without manual setup.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Build VOD browsing and playback UI: a home/browse page that lists videos (thumbnail + title) and a video detail page that plays the selected video on-demand with title/description and engagement controls.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/router.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/BrowsePage.tsx",
+          "frontend/src/pages/VideoDetailPage.tsx",
+          "frontend/src/hooks/queries/useVideoCatalog.ts",
+          "frontend/src/hooks/queries/useVideo.ts",
+          "frontend/src/components/video/VideoCard.tsx",
+          "frontend/src/components/video/VideoPlayer.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/router.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/BrowsePage.tsx",
+          "frontend/src/pages/VideoDetailPage.tsx",
+          "frontend/src/components/video/VideoCard.tsx",
+          "frontend/src/components/video/VideoPlayer.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Implement subscriptions: users can subscribe/unsubscribe to Pleiades TV (global subscription) and view their subscription status. Enforce that only subscribed users can access video playback while allowing non-subscribed users to browse the catalog and see video detail metadata.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/queries/useSubscriptionStatus.ts",
+          "frontend/src/hooks/mutations/useSubscriptionActions.ts",
+          "frontend/src/components/subscription/SubscribeButton.tsx",
+          "frontend/src/components/subscription/PlaybackSubscriptionGate.tsx",
+          "frontend/src/pages/VideoDetailPage.tsx",
+          "frontend/src/components/layout/AppHeader.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/subscription/SubscribeButton.tsx",
+          "frontend/src/components/subscription/PlaybackSubscriptionGate.tsx",
+          "frontend/src/pages/VideoDetailPage.tsx",
+          "frontend/src/components/layout/AppHeader.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Implement video comments: authenticated users can post comments on a video and view a comment list on the video detail page (include author identifier display and timestamp).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/queries/useComments.ts",
+          "frontend/src/hooks/mutations/usePostComment.ts",
+          "frontend/src/components/comments/CommentsSection.tsx",
+          "frontend/src/components/comments/CommentForm.tsx",
+          "frontend/src/pages/VideoDetailPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/comments/CommentsSection.tsx",
+          "frontend/src/components/comments/CommentForm.tsx",
+          "frontend/src/pages/VideoDetailPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Implement video likes: authenticated users can like/unlike a video and see the like count on the video detail page (and optionally on the browse cards). Likes must be one per user per video.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/queries/useLikeCount.ts",
+          "frontend/src/hooks/queries/useMyLikeState.ts",
+          "frontend/src/hooks/mutations/useToggleLike.ts",
+          "frontend/src/components/likes/LikeButton.tsx",
+          "frontend/src/pages/VideoDetailPage.tsx",
+          "frontend/src/components/video/VideoCard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/likes/LikeButton.tsx",
+          "frontend/src/pages/VideoDetailPage.tsx",
+          "frontend/src/components/video/VideoCard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Enable sharing: provide a share action on the video detail page that allows users to copy a shareable URL for the current video to the clipboard (and, when available, trigger the browser’s native share sheet via Web Share API).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/share/ShareButton.tsx",
+          "frontend/src/utils/share.ts",
+          "frontend/src/pages/VideoDetailPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/share/ShareButton.tsx",
+          "frontend/src/utils/share.ts",
+          "frontend/src/pages/VideoDetailPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Add a simple account/subscription page where an authenticated user can see their principal (or a short form) and subscription status, and can manage subscribe/unsubscribe from there as well.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/AccountPage.tsx",
+          "frontend/src/components/auth/RequireAuth.tsx",
+          "frontend/src/router.tsx",
+          "frontend/src/components/layout/AppHeader.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/AccountPage.tsx",
+          "frontend/src/components/auth/RequireAuth.tsx",
+          "frontend/src/router.tsx",
+          "frontend/src/components/layout/AppHeader.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/avatar-placeholder.dim_256x256.png",
+    "frontend/public/assets/generated/pleiades-hero.dim_1600x400.png",
+    "frontend/public/assets/generated/pleiades-tv-logo.dim_512x512.png",
+    "frontend/public/assets/generated/video-thumb-placeholder.dim_640x360.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/auth/LoginButton.tsx",
+    "frontend/src/components/auth/ProfileSetupModal.tsx",
+    "frontend/src/components/auth/RequireAuth.tsx",
+    "frontend/src/components/comments/CommentForm.tsx",
+    "frontend/src/components/comments/CommentsSection.tsx",
+    "frontend/src/components/layout/AppFooter.tsx",
+    "frontend/src/components/layout/AppHeader.tsx",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "frontend/src/components/likes/LikeButton.tsx",
+    "frontend/src/components/share/ShareButton.tsx",
+    "frontend/src/components/subscription/PlaybackSubscriptionGate.tsx",
+    "frontend/src/components/subscription/SubscribeButton.tsx",
+    "frontend/src/components/subscription/SubscriptionBadge.tsx",
+    "frontend/src/components/video/VideoCard.tsx",
+    "frontend/src/components/video/VideoPlayer.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useAuth.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/AccountPage.tsx",
+    "frontend/src/pages/BrowsePage.tsx",
+    "frontend/src/pages/VideoDetailPage.tsx",
+    "frontend/src/router.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/src/utils/share.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

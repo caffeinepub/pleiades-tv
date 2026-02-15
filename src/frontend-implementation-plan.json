@@ -1,0 +1,354 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Pleiades TV — Frontend implementation plan",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create the Pleiades TV app shell with a consistent visual theme across all pages (English-only UI text).",
+      "acceptanceCriteria": [
+        "App name “Pleiades TV” is visible in the UI (e.g., header).",
+        "Theme is applied consistently (buttons, inputs, cards, typography).",
+        "All UI strings are in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add global styling (Tailwind layers, CSS variables, typography defaults) to establish a distinctive, consistent Pleiades TV theme across the app."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme tokens (colors/radii/shadows/typography) to match the Pleiades TV brand styling and ensure consistent component theming."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the root app shell (layout + top navigation + routed content area) and ensure all user-facing text is in English."
+        },
+        {
+          "path": "frontend/src/components/layout/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create a layout wrapper to apply consistent spacing, backgrounds, and page structure across all screens."
+        },
+        {
+          "path": "frontend/src/components/layout/AppHeader.tsx",
+          "operation": "create",
+          "description": "Create a branded header that displays “Pleiades TV”, primary navigation, and auth controls (wired later)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add Internet Identity sign in/out UI and expose authenticated principal state for gated actions.",
+      "acceptanceCriteria": [
+        "User can sign in with Internet Identity and sign out.",
+        "UI clearly indicates signed-in vs signed-out state.",
+        "Authenticated principal is available to the rest of the app for gated actions (subscribe/comment/like)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/auth/LoginButton.tsx",
+          "operation": "create",
+          "description": "Implement a login/logout button using the `useInternetIdentity` hook and clear cached React Query data on logout. Use the selected `authorization` component guidance for authentication UI patterns; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/AuthStatusBadge.tsx",
+          "operation": "create",
+          "description": "Add a small signed-in/signed-out indicator (and principal short-form when signed in) for clear UI state."
+        },
+        {
+          "path": "frontend/src/hooks/useAuth.ts",
+          "operation": "create",
+          "description": "Create a lightweight convenience hook that derives `isAuthenticated`, `principalTextShort`, and shared auth helpers from `useInternetIdentity`."
+        },
+        {
+          "path": "frontend/src/components/layout/AppHeader.tsx",
+          "operation": "modify",
+          "description": "Wire LoginButton + AuthStatusBadge into the header so auth state is visible on all pages. Use the selected `authorization` component guidance for login/logout behavior; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Build VOD browse + video detail pages with playback, using backend catalog and detail retrieval, with loading/error states.",
+      "acceptanceCriteria": [
+        "Home page renders a grid/list of videos from the backend.",
+        "Clicking a video navigates to a detail view.",
+        "Detail view plays the video using the stored playback URL.",
+        "Loading and error states are shown for video fetches."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "create",
+          "description": "Define client-side routes for browse (home), video detail (by video id), and account page, and export the router used by App."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the router into the app shell so browse and video detail pages are navigable (including deep links for sharing)."
+        },
+        {
+          "path": "frontend/src/pages/BrowsePage.tsx",
+          "operation": "create",
+          "description": "Implement the browse page that fetches the video catalog via the backend actor and renders a grid/list with loading/error states."
+        },
+        {
+          "path": "frontend/src/pages/VideoDetailPage.tsx",
+          "operation": "create",
+          "description": "Implement the video detail page that fetches video metadata by id, renders title/description, and hosts playback + engagement controls with loading/error states."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useVideoCatalog.ts",
+          "operation": "create",
+          "description": "Add a React Query hook that calls the backend actor to fetch the video catalog and standardizes loading/error behavior."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useVideo.ts",
+          "operation": "create",
+          "description": "Add a React Query hook that calls the backend actor to fetch a single video by id and standardizes loading/error behavior."
+        },
+        {
+          "path": "frontend/src/components/video/VideoCard.tsx",
+          "operation": "create",
+          "description": "Create a reusable video card (thumbnail + title + optional duration) that links to the video detail route."
+        },
+        {
+          "path": "frontend/src/components/video/VideoPlayer.tsx",
+          "operation": "create",
+          "description": "Create a reusable HTML5 video player wrapper that accepts a playback URL and supports disabled/blocked display for subscription gating."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement subscription UI (subscribe/unsubscribe + status) and gate playback for non-subscribed users while keeping catalog browsing public.",
+      "acceptanceCriteria": [
+        "Backend stores per-user subscription status and exposes methods to get status and toggle subscribe/unsubscribe.",
+        "Frontend shows a clear “Subscribe/Unsubscribe” control and current status.",
+        "Non-subscribed users can browse the catalog but attempting to play a video is blocked with a clear call-to-action to subscribe.",
+        "Subscribed users can play videos successfully."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/queries/useSubscriptionStatus.ts",
+          "operation": "create",
+          "description": "Add a React Query hook to fetch the current user's subscription status via the backend actor (enabled only when signed in) and provide loading/error state."
+        },
+        {
+          "path": "frontend/src/hooks/mutations/useSubscriptionActions.ts",
+          "operation": "create",
+          "description": "Add React Query mutations for subscribe/unsubscribe that update/invalidate subscription status queries for immediate UI consistency."
+        },
+        {
+          "path": "frontend/src/components/subscription/SubscribeButton.tsx",
+          "operation": "create",
+          "description": "Create a Subscribe/Unsubscribe control that reflects current status, requires authentication, and triggers the appropriate backend calls."
+        },
+        {
+          "path": "frontend/src/components/subscription/PlaybackSubscriptionGate.tsx",
+          "operation": "create",
+          "description": "Create a gate component for the video player area that blocks playback for non-subscribed users and shows a clear subscribe call-to-action while still showing metadata."
+        },
+        {
+          "path": "frontend/src/pages/VideoDetailPage.tsx",
+          "operation": "modify",
+          "description": "Wire subscription status + SubscribeButton + PlaybackSubscriptionGate into the detail page so non-subscribed users cannot play videos but can view metadata."
+        },
+        {
+          "path": "frontend/src/components/layout/AppHeader.tsx",
+          "operation": "modify",
+          "description": "Add a prominent subscription status indicator and quick Subscribe/Unsubscribe access when signed in (without blocking public browsing)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement video comments UI: list comments and allow authenticated users to post new comments with live update.",
+      "acceptanceCriteria": [
+        "Backend supports adding a comment to a video and listing comments for a video in chronological order.",
+        "Frontend shows existing comments on the video detail page.",
+        "Signed-in users can submit a comment; signed-out users are prompted to sign in to comment.",
+        "Newly posted comments appear in the UI without a full page refresh."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/queries/useComments.ts",
+          "operation": "create",
+          "description": "Add a React Query hook to fetch comments for a video and provide loading/error state."
+        },
+        {
+          "path": "frontend/src/hooks/mutations/usePostComment.ts",
+          "operation": "create",
+          "description": "Add a React Query mutation to post a comment and update/invalidate the comments query so new comments appear without a full refresh."
+        },
+        {
+          "path": "frontend/src/components/comments/CommentsSection.tsx",
+          "operation": "create",
+          "description": "Create a comments section that displays comment list (author identifier + timestamp) and includes a comment form gated by authentication."
+        },
+        {
+          "path": "frontend/src/components/comments/CommentForm.tsx",
+          "operation": "create",
+          "description": "Create a controlled comment input and submit button; when signed out, show a sign-in prompt instead. Use selected `authorization` component guidance for authenticated UI behavior; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/VideoDetailPage.tsx",
+          "operation": "modify",
+          "description": "Wire CommentsSection into the video detail page and ensure it reacts to video id changes."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement likes UI: authenticated users can like/unlike a video, see like count, and preserve correct state after refresh.",
+      "acceptanceCriteria": [
+        "Backend enforces at most one like per user per video and exposes like count + user’s like state.",
+        "Frontend displays like count and current user like state.",
+        "Toggling like updates the UI immediately and remains correct after refresh."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/queries/useLikeCount.ts",
+          "operation": "create",
+          "description": "Add a React Query hook to fetch like count for a video with loading/error state."
+        },
+        {
+          "path": "frontend/src/hooks/queries/useMyLikeState.ts",
+          "operation": "create",
+          "description": "Add a React Query hook to derive the current user's like state for a video (enabled only when signed in) using available backend calls and cache strategy."
+        },
+        {
+          "path": "frontend/src/hooks/mutations/useToggleLike.ts",
+          "operation": "create",
+          "description": "Add a mutation that toggles like/unlike and updates/invalidate like-related queries for immediate UI consistency."
+        },
+        {
+          "path": "frontend/src/components/likes/LikeButton.tsx",
+          "operation": "create",
+          "description": "Create a like button that shows current state + like count, requires authentication to toggle, and provides immediate UI feedback."
+        },
+        {
+          "path": "frontend/src/pages/VideoDetailPage.tsx",
+          "operation": "modify",
+          "description": "Wire LikeButton into the engagement controls area on the detail page."
+        },
+        {
+          "path": "frontend/src/components/video/VideoCard.tsx",
+          "operation": "modify",
+          "description": "Optionally display like count on browse cards (if available) without requiring authentication to view."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add sharing action on video detail page: Web Share API when available, otherwise copy share URL to clipboard with feedback.",
+      "acceptanceCriteria": [
+        "Video detail page has a Share action.",
+        "Copy-to-clipboard produces a shareable URL that includes the video id.",
+        "If Web Share API is supported, the app can invoke it; otherwise it gracefully falls back to copy-to-clipboard.",
+        "User receives visible feedback after copying/sharing."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/share/ShareButton.tsx",
+          "operation": "create",
+          "description": "Implement a Share action that uses Web Share API when available and falls back to clipboard copy; show visible success/failure feedback."
+        },
+        {
+          "path": "frontend/src/utils/share.ts",
+          "operation": "create",
+          "description": "Add helpers to construct a canonical shareable URL including the video id and to perform share/copy with consistent error handling."
+        },
+        {
+          "path": "frontend/src/pages/VideoDetailPage.tsx",
+          "operation": "modify",
+          "description": "Wire ShareButton into the engagement controls area and ensure it shares the current video id route URL."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Add an account/subscription page for authenticated users showing principal short form and subscription status with management controls.",
+      "acceptanceCriteria": [
+        "Account page is reachable from navigation when signed in.",
+        "Account page displays user identity info and subscription status.",
+        "Subscription can be managed from the account page."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AccountPage.tsx",
+          "operation": "create",
+          "description": "Create an account page that is accessible when signed in and displays principal short form plus subscription status with SubscribeButton."
+        },
+        {
+          "path": "frontend/src/components/auth/RequireAuth.tsx",
+          "operation": "create",
+          "description": "Create an auth guard wrapper that blocks the account page for signed-out users with a clear sign-in prompt (without restricting public browsing). Use selected `authorization` component guidance for access-denied UI behavior; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/router.tsx",
+          "operation": "modify",
+          "description": "Register the account route and wrap it in RequireAuth so it is only reachable for authenticated users."
+        },
+        {
+          "path": "frontend/src/components/layout/AppHeader.tsx",
+          "operation": "modify",
+          "description": "Add an Account navigation item that only appears when signed in."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add generated static image assets (branding + placeholders) under frontend/public/assets/generated and render them in the UI.",
+      "acceptanceCriteria": [
+        "Generated images exist under frontend/public/assets/generated.",
+        "App uses the generated logo in the header/login area and uses placeholders where appropriate (e.g., missing thumbnails/avatars)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/pleiades-tv-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated Pleiades TV logo mark at frontend/public/assets/generated/pleiades-tv-logo.dim_512x512.png and ensure it is committed as a static asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/pleiades-hero.dim_1600x400.png",
+          "operation": "create",
+          "description": "Add the generated hero/header background illustration at frontend/public/assets/generated/pleiades-hero.dim_1600x400.png and ensure it is committed as a static asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/video-thumb-placeholder.dim_640x360.png",
+          "operation": "create",
+          "description": "Add the generated video thumbnail placeholder at frontend/public/assets/generated/video-thumb-placeholder.dim_640x360.png and ensure it is committed as a static asset."
+        },
+        {
+          "path": "frontend/public/assets/generated/avatar-placeholder.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated avatar placeholder at frontend/public/assets/generated/avatar-placeholder.dim_256x256.png and ensure it is committed as a static asset."
+        },
+        {
+          "path": "frontend/src/components/layout/AppHeader.tsx",
+          "operation": "modify",
+          "description": "Render the generated logo in the header/login area using frontend/public/assets/generated/pleiades-tv-logo.dim_512x512.png and apply theme-consistent sizing/spacing."
+        },
+        {
+          "path": "frontend/src/pages/BrowsePage.tsx",
+          "operation": "modify",
+          "description": "Render the generated hero background image (frontend/public/assets/generated/pleiades-hero.dim_1600x400.png) within the existing browse page header section (no new top-level routes)."
+        },
+        {
+          "path": "frontend/src/components/video/VideoCard.tsx",
+          "operation": "modify",
+          "description": "Use frontend/public/assets/generated/video-thumb-placeholder.dim_640x360.png when a video has a missing/empty thumbnail URL."
+        },
+        {
+          "path": "frontend/src/components/comments/CommentsSection.tsx",
+          "operation": "modify",
+          "description": "Use frontend/public/assets/generated/avatar-placeholder.dim_256x256.png for comment author avatar placeholders where appropriate."
+        }
+      ]
+    }
+  ]
+}

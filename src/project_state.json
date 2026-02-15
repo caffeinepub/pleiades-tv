@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Build Pleiades TV, a video on-demand (VOD) app with subscriptions and social engagement features (comments, likes, sharing).",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- App logo mark for “Pleiades TV” (pleiades-tv-logo.dim_512x512.png)\n- Wide header/hero background illustration with abstract star-cluster motif (pleiades-hero.dim_1600x400.png)\n- Video thumbnail placeholder image (video-thumb-placeholder.dim_640x360.png)\n- User avatar placeholder image (avatar-placeholder.dim_256x256.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-the-pleiades-tv-app-shell-with-a-coherent-distinctive-visual-theme-colors-typography-spacing-and-component-styling-applied-consistently-across-all-pages-use-english-for-all-user-facing-text",
+      "title": "Create the Pleiades TV app shell with a coherent, distinctive visual theme (colors, typography, spacing, and component styling) applied consistently across all pages. Use English for all user-facing text.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-internet-identity-authentication-so-users-can-sign-in-out-and-the-app-can-associate-subscriptions-comments-and-likes-with-a-unique-user-identity",
+      "title": "Implement Internet Identity authentication so users can sign in/out and the app can associate subscriptions, comments, and likes with a unique user identity.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-vod-browsing-and-playback-ui-a-home-browse-page-that-lists-videos-thumbnail-title-and-a-video-detail-page-that-plays-the-selected-video-on-demand-with-title-description-and-engagement-controls",
+      "title": "Build VOD browsing and playback UI: a home/browse page that lists videos (thumbnail + title) and a video detail page that plays the selected video on-demand with title/description and engagement controls.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-subscriptions-users-can-subscribe-unsubscribe-to-pleiades-tv-global-subscription-and-view-their-subscription-status-enforce-that-only-subscribed-users-can-access-video-playback-while-allowing-non-subscribed-users-to-browse-the-catalog-and-see-video-detail-metadata",
+      "title": "Implement subscriptions: users can subscribe/unsubscribe to Pleiades TV (global subscription) and view their subscription status. Enforce that only subscribed users can access video playback while allowing non-subscribed users to browse the catalog and see video detail metadata.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-video-comments-authenticated-users-can-post-comments-on-a-video-and-view-a-comment-list-on-the-video-detail-page-include-author-identifier-display-and-timestamp",
+      "title": "Implement video comments: authenticated users can post comments on a video and view a comment list on the video detail page (include author identifier display and timestamp).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-video-likes-authenticated-users-can-like-unlike-a-video-and-see-the-like-count-on-the-video-detail-page-and-optionally-on-the-browse-cards-likes-must-be-one-per-user-per-video",
+      "title": "Implement video likes: authenticated users can like/unlike a video and see the like count on the video detail page (and optionally on the browse cards). Likes must be one per user per video.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enable-sharing-provide-a-share-action-on-the-video-detail-page-that-allows-users-to-copy-a-shareable-url-for-the-current-video-to-the-clipboard-and-when-available-trigger-the-browser-s-native-share-sheet-via-web-share-api",
+      "title": "Enable sharing: provide a share action on the video detail page that allows users to copy a shareable URL for the current video to the clipboard (and, when available, trigger the browser’s native share sheet via Web Share API).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-simple-account-subscription-page-where-an-authenticated-user-can-see-their-principal-or-a-short-form-and-subscription-status-and-can-manage-subscribe-unsubscribe-from-there-as-well",
+      "title": "Add a simple account/subscription page where an authenticated user can see their principal (or a short form) and subscription status, and can manage subscribe/unsubscribe from there as well.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-static-image-assets-for-branding-and-placeholders-and-render-them-in-the-ui-store-under-frontend-public-assets-generated",
+      "title": "Add generated static image assets for branding and placeholders, and render them in the UI (store under frontend/public/assets/generated).",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create Pleiades TV app with video on-demand browsing and playback",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement user subscriptions (subscribe/unsubscribe and subscription management)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add commenting on videos",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add like functionality for videos",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Enable sharing videos (share links/actions)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add backend data models and APIs to support a video catalog and video detail retrieval (at minimum: video id, title, description, thumbnail image URL, video playback URL, duration/created timestamp). Seed the app with a small default catalog so the UI works end-to-end without manual setup.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Pleiades TV",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

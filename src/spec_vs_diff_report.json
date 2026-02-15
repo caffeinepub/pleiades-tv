@@ -1,0 +1,87 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T07:20:53.763Z",
+  "summary": "Diff adds a Motoko backend actor with video/catalog types plus subscription/likes/comments storage, and a React frontend with themed app shell, II-based auth hooks/components, video cards/player, subscription gating, comments UI, like button, and share button. Some requirements are not fully evidenced or appear incomplete based on the visible snippets (notably seeded catalog size and per-user like state).",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Seed the app with a small default catalog where at least 3 sample videos are returned from the list endpoint after deployment.",
+      "reason": "The visible seed catalog in backend/main.mo shows only two videos (video1, video2). The diff is truncated, but no third seed video is evidenced.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Frontend must display current user like state and remain correct after refresh (requires retrieving per-user like state from backend).",
+      "reason": "LikeButton tracks `isLiked` only in local component state and resets it on videoId change; it does not query backend for the caller’s current like state, so correctness after refresh is not evidenced.",
+      "evidence": [
+        "frontend/src/components/likes/LikeButton.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "User profile management (get/save caller profile) and a profile setup modal prompting for a name.",
+      "reason": "BuildRequest requirements do not include user profile/name collection features.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/auth/ProfileSetupModal.tsx"
+      ]
+    },
+    {
+      "description": "Admin/authorization initialization via secret URL parameter `caffeineAdminToken` and access-control mixin usage.",
+      "reason": "BuildRequest does not request an admin token mechanism or access-control initialization flow beyond Internet Identity auth for users.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Footer includes a promotional outbound link to caffeine.ai with UTM parameters.",
+      "reason": "Not requested as part of product requirements; could be considered extraneous branding.",
+      "evidence": [
+        "frontend/src/components/layout/AppFooter.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.62,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/auth/LoginButton.tsx",
+    "frontend/src/components/auth/ProfileSetupModal.tsx",
+    "frontend/src/components/auth/RequireAuth.tsx",
+    "frontend/src/components/comments/CommentForm.tsx",
+    "frontend/src/components/comments/CommentsSection.tsx",
+    "frontend/src/components/layout/AppFooter.tsx",
+    "frontend/src/components/layout/AppHeader.tsx",
+    "frontend/src/components/layout/AppLayout.tsx",
+    "frontend/src/components/likes/LikeButton.tsx",
+    "frontend/src/components/share/ShareButton.tsx",
+    "frontend/src/components/subscription/PlaybackSubscriptionGate.tsx",
+    "frontend/src/components/subscription/SubscribeButton.tsx",
+    "frontend/src/components/subscription/SubscriptionBadge.tsx",
+    "frontend/src/components/video/VideoCard.tsx",
+    "frontend/src/components/video/VideoPlayer.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useAuth.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/AccountPage.tsx",
+    "frontend/src/pages/BrowsePage.tsx",
+    "frontend/src/pages/VideoDetailPage.tsx",
+    "frontend/src/router.tsx",
+    "frontend/src/utils/share.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

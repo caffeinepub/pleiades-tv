@@ -1,0 +1,202 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-the-pleiades-tv-app-shell-with-a-coherent-distinctive-visual-theme-colors-typography-spacing-and-component-styling-applied-consistently-across-all-pages-use-english-for-all-user-facing-text",
+      "featureTitle": "Create the Pleiades TV app shell with a coherent, distinctive visual theme (colors, typography, spacing, and component styling) applied consistently across all pages. Use English for all user-facing text.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/layout/AppHeader.tsx",
+        "frontend/src/components/layout/AppLayout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-internet-identity-authentication-so-users-can-sign-in-out-and-the-app-can-associate-subscriptions-comments-and-likes-with-a-unique-user-identity",
+      "featureTitle": "Implement Internet Identity authentication so users can sign in/out and the app can associate subscriptions, comments, and likes with a unique user identity.",
+      "files": [
+        "frontend/src/components/auth/LoginButton.tsx",
+        "frontend/src/components/layout/AppHeader.tsx",
+        "frontend/src/hooks/useAuth.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-vod-browsing-and-playback-ui-a-home-browse-page-that-lists-videos-thumbnail-title-and-a-video-detail-page-that-plays-the-selected-video-on-demand-with-title-description-and-engagement-controls",
+      "featureTitle": "Build VOD browsing and playback UI: a home/browse page that lists videos (thumbnail + title) and a video detail page that plays the selected video on-demand with title/description and engagement controls.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/video/VideoCard.tsx",
+        "frontend/src/components/video/VideoPlayer.tsx",
+        "frontend/src/pages/BrowsePage.tsx",
+        "frontend/src/pages/VideoDetailPage.tsx",
+        "frontend/src/router.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-subscriptions-users-can-subscribe-unsubscribe-to-pleiades-tv-global-subscription-and-view-their-subscription-status-enforce-that-only-subscribed-users-can-access-video-playback-while-allowing-non-subscribed-users-to-browse-the-catalog-and-see-video-detail-metadata",
+      "featureTitle": "Implement subscriptions: users can subscribe/unsubscribe to Pleiades TV (global subscription) and view their subscription status. Enforce that only subscribed users can access video playback while allowing non-subscribed users to browse the catalog and see video detail metadata.",
+      "files": [
+        "frontend/src/components/layout/AppHeader.tsx",
+        "frontend/src/components/subscription/PlaybackSubscriptionGate.tsx",
+        "frontend/src/components/subscription/SubscribeButton.tsx",
+        "frontend/src/pages/VideoDetailPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-video-comments-authenticated-users-can-post-comments-on-a-video-and-view-a-comment-list-on-the-video-detail-page-include-author-identifier-display-and-timestamp",
+      "featureTitle": "Implement video comments: authenticated users can post comments on a video and view a comment list on the video detail page (include author identifier display and timestamp).",
+      "files": [
+        "frontend/src/components/comments/CommentForm.tsx",
+        "frontend/src/components/comments/CommentsSection.tsx",
+        "frontend/src/pages/VideoDetailPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-video-likes-authenticated-users-can-like-unlike-a-video-and-see-the-like-count-on-the-video-detail-page-and-optionally-on-the-browse-cards-likes-must-be-one-per-user-per-video",
+      "featureTitle": "Implement video likes: authenticated users can like/unlike a video and see the like count on the video detail page (and optionally on the browse cards). Likes must be one per user per video.",
+      "files": [
+        "frontend/src/components/likes/LikeButton.tsx",
+        "frontend/src/components/video/VideoCard.tsx",
+        "frontend/src/pages/VideoDetailPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-enable-sharing-provide-a-share-action-on-the-video-detail-page-that-allows-users-to-copy-a-shareable-url-for-the-current-video-to-the-clipboard-and-when-available-trigger-the-browser-s-native-share-sheet-via-web-share-api",
+      "featureTitle": "Enable sharing: provide a share action on the video detail page that allows users to copy a shareable URL for the current video to the clipboard (and, when available, trigger the browser’s native share sheet via Web Share API).",
+      "files": [
+        "frontend/src/components/share/ShareButton.tsx",
+        "frontend/src/pages/VideoDetailPage.tsx",
+        "frontend/src/utils/share.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-simple-account-subscription-page-where-an-authenticated-user-can-see-their-principal-or-a-short-form-and-subscription-status-and-can-manage-subscribe-unsubscribe-from-there-as-well",
+      "featureTitle": "Add a simple account/subscription page where an authenticated user can see their principal (or a short form) and subscription status, and can manage subscribe/unsubscribe from there as well.",
+      "files": [
+        "frontend/src/components/auth/RequireAuth.tsx",
+        "frontend/src/components/layout/AppHeader.tsx",
+        "frontend/src/pages/AccountPage.tsx",
+        "frontend/src/router.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-generated-static-image-assets-for-branding-and-placeholders-and-render-them-in-the-ui-store-under-frontend-public-assets-generated",
+      "featureTitle": "Add generated static image assets for branding and placeholders, and render them in the UI (store under frontend/public/assets/generated).",
+      "files": [
+        "frontend/src/components/comments/CommentsSection.tsx",
+        "frontend/src/components/layout/AppHeader.tsx",
+        "frontend/src/components/video/VideoCard.tsx",
+        "frontend/src/pages/BrowsePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
